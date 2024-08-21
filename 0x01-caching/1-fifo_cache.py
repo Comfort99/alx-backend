@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ FIFO MODEL """
-from base_cache import BaseCaching
+from base_caching import BaseCaching
 from collections import OrderedDict
 
 

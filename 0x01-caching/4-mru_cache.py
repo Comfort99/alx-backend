@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """ MRU Model """
-from base_cache import BaseCaching
+from base_caching import BaseCaching
 from collections import OrderedDict
 
 
