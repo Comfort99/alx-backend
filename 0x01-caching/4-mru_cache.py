@@ -4,7 +4,7 @@ from base_caching import BaseCaching
 from collections import OrderedDict
 
 
-class LIFOCache(BaseCaching):
+class MRUCache(BaseCaching):
     """ Inherets from BaseCaching
      MRU algorithm """
 
