@@ -21,19 +21,25 @@ class MRUCache(BaseCaching):
 
         # If the key already exist update the position
         if key in self.cache_data:
-            self.cache_data.move_to_end(key)
+            self.cache_data.move_to_end(key, last=True)
         else:
             # if the dictionary cache is full, remove the recently used item
             if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
                 mru_key = next(reversed(self.cache_data))
                 print(f"DISCARD: {mru_key}")
-                self.cache_data.popitem(last=True)
+                self.cache_data.pop(mru_key)
 
         self.cache_data[key] = item
+        self.cache_data.move_to_end(key, last=True)
 
     def get(self, key):
         """ Must return the value associated
         with the key from the cache dictionary """
         if key is None:
             return None
-        return self.cache_data.get(key)
+        
+        if key in self.cache_data:
+            self.cache_data.move_to_end(key, last=True)
+            return self.cache_data[key]
+        
+        return None
