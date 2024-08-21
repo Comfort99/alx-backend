@@ -9,6 +9,7 @@ class FIFOCache(BaseCaching):
     First in First Out System"""
 
     def __init__(self):
+        """ Initialize the Cache """
         super().__init__()
         self.cache_data = OrderedDict()
 
