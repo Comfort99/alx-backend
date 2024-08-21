@@ -1,12 +1,14 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """ Child Model """
-
 from base_cache import BaseCaching
 
 
 class BasicCache(BaseCaching):
     """ Inherits from BaseCaching and
         is a basic caching system with no limit. """
+
+    def __init__(self):
+        super().__init__()
 
     def put(self, key, item):
         """Adds the item to the cache with the given key."""
