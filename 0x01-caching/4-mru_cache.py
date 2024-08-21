@@ -16,7 +16,7 @@ class LIFOCache(BaseCaching):
     def put(self, key, item):
         """Adds the item to the cache with the given key.
          LIFO Algorithm"""
-        if key is None and item is None:
+        if key is None or item is None:
             return
 
         if key not in self.cache_data:
