@@ -37,9 +37,9 @@ class MRUCache(BaseCaching):
         with the key from the cache dictionary """
         if key is None:
             return None
-        
+
         if key in self.cache_data:
             self.cache_data.move_to_end(key, last=True)
             return self.cache_data[key]
-        
+
         return None
