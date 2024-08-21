@@ -16,7 +16,7 @@ class FIFOCache(BaseCaching):
     def put(self, key, item):
         """Adds the item to the cache with the given key.
         FIFO Algorithm"""
-        if key is None or item is None:
+        if key is None  or item is None:
             return
 
         self.cache_data[key] = item
@@ -24,7 +24,7 @@ class FIFOCache(BaseCaching):
         """ first check if the dictionary is not full """
         if len(self.cache_data) > BaseCaching.MAX_ITEMS:
             oldest_key = next(iter(self.cache_data))
-            print(f"Discard: {oldest_key}")
+            print(f"DISCARD: {oldest_key}")
             self.cache_data.pop(oldest_key)
 
     def get(self, key):
