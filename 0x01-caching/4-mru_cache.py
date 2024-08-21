@@ -1,34 +1,34 @@
 #!/usr/bin/env python3
-""" MRU Model """
-from base_caching import BaseCaching
+""" Most Recently Used caching module """
 from collections import OrderedDict
+from base_caching import BaseCaching
 
 
 class MRUCache(BaseCaching):
-    """ Inherets from BaseCaching
-     MRU algorithm """
-
+    """ Represent an object that allows storing
+        and retrieving items from a dictionary with an MRU
+        removal mechanism when the limit is reached.
+    """
     def __init__(self):
-        """ Inintialize Cache """
+        """ Initialize the cache """
         super().__init__()
         self.cache_data = OrderedDict()
 
     def put(self, key, item):
-        """Adds the item to the cache with the given key.
-         LIFO Algorithm"""
+        """ Add an item in the cache """
         if key is None or item is None:
             return
-
         if key not in self.cache_data:
-            if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-                mru_key = next(reversed(self.cache_data))
-                print(f"DISCARD: {mru_key}")
-                self.cache_data.pop(mru_key)
-        self.cache_data[key] = item
+            if len(self.cache_data) + 1 > BaseCaching.MAX_ITEMS:
+                mru_key, _ = self.cache_data.popitem(False)
+                print("DISCARD:", mru_key)
+            self.cache_data[key] = item
+            self.cache_data.move_to_end(key, last=False)
+        else:
+            self.cache_data[key] = item
 
     def get(self, key):
-        """ Must return the value associated
-        with the key from the cache dictionary """
-        if key is None:
-            return None
-        return self.cache_data.get(key)
+        """ Retrieve an item by key """
+        if key is not None and key in self.cache_data:
+            self.cache_data.move_to_end(key, last=False)
+        return self.cache_data.get(key, None)
