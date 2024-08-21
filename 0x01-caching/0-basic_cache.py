@@ -8,6 +8,7 @@ class BasicCache(BaseCaching):
         is a basic caching system with no limit. """
 
     def __init__(self):
+        """ Initialize cache """
         super().__init__()
 
     def put(self, key, item):
