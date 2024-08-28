@@ -7,9 +7,9 @@ from flask_babel import Babel
 class Config:
     """ Class that configures Babel
     language, lacation and timezone """
-    LANGUAGE = ["en", "fr"]
-    BABEL_DEFAULT_LOCATE = 'en'
-    BABEL_DEFAULT_TIMEZONE = 'UTC'
+    LANGUAGES = ["en", "fr"]
+    BABEL_DEFAULT_LOCALE = "en"
+    BABEL_DEFAULT_TIMEZONE = "UTC"
 
 
 # create flask instance
@@ -21,7 +21,7 @@ babel = Babel(app)
 
 
 @app.route('/')
-def basic_babel() -> str:
+def Home() -> str:
     """ A basic route render function """
     return render_template('1-index.html')
 
